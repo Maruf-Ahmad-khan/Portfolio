@@ -5,7 +5,7 @@ class ContactPage:
 
     def __init__(self):
         self.title = "Contact Page"
-        self.home_link = "http://192.168.29.105:5500/Shadow%20Tutorial/port.html"
+        self.home_link = "https://portfolio-lpymrdq5w8enefstpltenm.streamlit.app/"
 
     def set_page_config(self):
         """Set the page configuration."""
