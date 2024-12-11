@@ -19,6 +19,7 @@ class DataScientistProfileApp:
         # Links for pages
         self.pages = {
             "CV": "https://digitalresume-zrpmbgpkve3xngfcelnjz3.streamlit.app/",
+            "Contact": "https://portfolio-hsapppcy8bkq4nwsns4tnqc.streamlit.app/~/+/",
             "Power BI Reports": "https://maruf-ahmad-khan-campaign-reporting-demo-mlivgc.streamlit.app/",
             "Power BI Weekly and Monthly Reports": "https://geminichatbot-kmvys7catpysctcstxk2np.streamlit.app/",
             "Data Science Project": "Data_Science.html"
