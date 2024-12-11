@@ -56,7 +56,7 @@ class ContactPage:
             </style>
             <div class="header-container">
                 <ul class="nav-links">
-                    <li><a href="{self.home_link}" target="_blank">Home</a></li>
+                    <li><a href="{self.home_link}" target="https://portfolio-lpymrdq5w8enefstpltenm.streamlit.app/">Home</a></li>
                 </ul>
             </div>
             """,
