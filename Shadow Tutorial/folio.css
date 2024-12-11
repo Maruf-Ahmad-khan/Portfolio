@@ -1,0 +1,149 @@
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: url('images/Analytics graph.jpg') no-repeat center center fixed;
+    background-size: 110%;
+}
+
+header {
+    background: #000;
+    color: #fff;
+    padding: 1rem 0;
+    text-align: center;
+    position: relative;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2rem;
+}
+
+nav {
+    background: #333;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem 1rem;
+    align-items: center;
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+nav ul li {
+    margin: 0 0.5rem;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+nav ul li a .home-icon {
+    width: 20px;
+    height: 20px;
+    vertical-align: middle;
+}
+
+nav ul.social {
+    display: flex;
+}
+
+nav ul.social li {
+    margin: 0 0.5rem;
+}
+
+nav ul.social li a img {
+    width: 20px;
+    height: 20px;
+}
+
+main {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.8);  /* Slight transparency to let the background image show through slightly */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.profile {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    background: #fff;  /* Override background */
+}
+
+.profile img {
+    max-width: 30%;
+    height: auto;
+    flex: 1 1 300px;
+    margin-right: 1rem;
+    background: #fff;  /* Override background */
+}
+
+.profile .description {
+    flex: 2 1 300px;
+    background: #fff;  /* Override background */
+}
+
+.profile h2 {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 0.5rem;
+}
+
+.profile h3 {
+    font-size: 1.5rem;
+    color: #555;
+    margin-bottom: 1rem;
+}
+
+.profile ul {
+    list-style: none;
+    padding: 0;
+}
+
+.profile ul li {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.profile ul li span {
+    margin-right: 0.5rem;
+}
+
+footer {
+    background: #000;
+    color: #fff;
+    text-align: center;
+    padding: 1rem 0;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    nav ul {
+        flex-direction: column;
+    }
+
+    nav ul.social {
+        margin-top: 0.5rem;
+    }
+
+    .profile {
+        flex-direction: column;
+    }
+
+    .profile img {
+        margin-right: 0;
+        margin-bottom: 1rem;
+    }
+
+    .profile .description {
+        text-align: center;
+    }
+}
