@@ -1,191 +1,111 @@
 import streamlit as st
-from bs4 import BeautifulSoup
+import base64
 
-
-class ContactPage:
-    """Class to represent the contact page."""
-
+class DataScientistProfileApp:
     def __init__(self):
-        self.title = "Contact Page"
-        self.html_content = """
-        <div class="logo-nav">
-            <img src="Shadow Tutorial/images/Logo.jpeg" alt="Logo">
-        </div>
-        """
-        self.home_link = "http://192.168.29.105:5500/Shadow%20Tutorial/port.html"
+        # Basic profile attributes
+        self.title = "Responsive Data Scientist Profile"
+        self.header_text = "LET THE DATA GLOW!"
+        self.profile_name = "Maruf Khan"
+        self.profile_title = "DATA SCIENTIST: THIS IS ME"
+        self.profile_description = [
+            "💪 enjoys tackling challenging issues in a variety of fields",
+            "🌍 is employed in the data science field at the moment.",
+            "🔥 overcame difficult tasks to extract valuable insights from finance, sales, affiliate, and digital marketing data.",
+            "⚡ uses a variety of data structures, including text, image, graph, and numerical ones.",
+            "🌟 in the end, attempts to make the information sparkle!"
+        ]
+        
+        # Links for pages
+        self.pages = {
+            "CV": "https://digitalresume-zrpmbgpkve3xngfcelnjz3.streamlit.app/",
+            "Power BI Reports": "https://maruf-ahmad-khan-campaign-reporting-demo-mlivgc.streamlit.app/",
+            "Power BI Weekly and Monthly Reports": "https://geminichatbot-kmvys7catpysctcstxk2np.streamlit.app/",
+            "Data Science Project": "Data_Science.html"
+        }
 
-    def set_page_config(self):
-        """Set the page configuration."""
-        st.set_page_config(page_title=self.title, layout="wide")
-
-    def extract_image_src(self, html):
-        """Extract image sources using BeautifulSoup."""
-        soup = BeautifulSoup(html, "html.parser")
-        img_tags = soup.find_all("img")
-        return [img["src"] for img in img_tags if "src" in img.attrs]
+    def get_base64_image(self, file_path):
+        """Convert an image file to a base64 string."""
+        try:
+            with open(file_path, "rb") as img_file:
+                return base64.b64encode(img_file.read()).decode("utf-8")
+        except FileNotFoundError:
+            return None
 
     def render_header(self):
-        """Render the header section with navigation."""
-        # Extract the image path using BeautifulSoup
-        logo_path = self.extract_image_src(self.html_content)[0]
+        st.markdown(f"<h1 style='text-align: center; color: white;'>{self.header_text}</h1>", unsafe_allow_html=True)
 
-        st.markdown(
-            f"""
-            <style>
-            .header-container {{
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                background-color: #000;
-                padding: 20px;
-                color: white;
-                box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
-            }}
-            .logo-nav {{
-                display: flex;
-                align-items: center;
-            }}
-            .logo-nav img {{
-                width: 120px;
-                margin-right: 20px;
-            }}
-            .nav-links {{
-                list-style: none;
-                display: flex;
-                margin: 0;
-                padding: 0;
-                gap: 15px;
-            }}
-            .nav-links a {{
-                text-decoration: none;
-                color: #fff;
-                font-weight: bold;
-                padding: 10px 20px;
-                border: 2px solid #fff;
-                border-radius: 5px;
-                transition: background-color 0.3s, color 0.3s;
-            }}
-            .nav-links a:hover {{
-                background-color: #fff;
-                color: #000;
-            }}
-            </style>
-            <div class="header-container">
-                <div class="logo-nav">
-                    <img src="{logo_path}" alt="Logo">
-                </div>
-                <ul class="nav-links">
-                    <li><a href="{self.home_link}" target="_blank">Home</a></li>
-                </ul>
-            </div>
-            """,
-            unsafe_allow_html=True,
-        )
-
-    def render_intro(self):
-        """Render the introduction section."""
+    def render_nav(self):
+        # Navigation bar
         st.markdown(
             """
-            <style>
-            .contact-intro {{
-                text-align: center;
-                padding: 50px 0;
-                background-color: #cfe2ff;
-            }}
-            .contact-intro h1 {{
-                margin: 0;
-                font-size: 36px;
-            }}
-            </style>
-            <section class="contact-intro">
-                <h1>Contact</h1>
-                <p>Have a project you'd like to discuss? Let's make something great together!</p>
-            </section>
+            <nav style='display: flex; justify-content: space-between; background: #333; color: white; padding: 10px;'>
+                <ul style='list-style-type: none; display: flex; padding: 0; margin: 0;'>
             """,
-            unsafe_allow_html=True,
+            unsafe_allow_html=True
         )
+        for page, link in self.pages.items():
+            st.markdown(
+                f"<li style='margin-right: 20px;'><a href='{link}' style='color: white; text-decoration: none;'>{page}</a></li>",
+                unsafe_allow_html=True
+            )
+        st.markdown("</ul></nav>", unsafe_allow_html=True)
 
-    def render_contact_form(self):
-        """Render the contact form."""
-        st.markdown(
-            """
-            <style>
-            .contact-form {{
-                background-color: #bbecbb;
-                padding: 50px 0;
-                text-align: center;
-            }}
-            .form-container {{
-                max-width: 600px;
-                margin: 0 auto;
-                padding: 20px;
-                box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
-                background-color: #c0efa9;
-                border-radius: 10px;
-            }}
-            .form-container p {{
-                margin-bottom: 20px;
-                color: #666;
-            }}
-            .form-container label {{
-                display: block;
-                margin-bottom: 5px;
-                color: #333;
-            }}
-            .form-container input,
-            .form-container textarea {{
-                width: 100%;
-                padding: 10px;
-                margin-bottom: 20px;
-                border: 1px solid #ccc;
-                border-radius: 5px;
-                box-sizing: border-box;
-            }}
-            .form-container textarea {{
-                resize: vertical;
-                height: 150px;
-            }}
-            .form-container button {{
-                width: 100%;
-                padding: 15px;
-                border: none;
-                background-color: #007bff;
-                color: #fff;
-                font-size: 16px;
-                border-radius: 5px;
-                cursor: pointer;
-            }}
-            .form-container button:hover {{
-                background-color: #0056b3;
-            }}
-            </style>
-            <section class="contact-form">
-                <div class="form-container">
-                    <p>Use the form below to let me know a little more about your objectives and I'll get back to you.</p>
+    def render_profile(self):
+        st.markdown("<div style='max-width: 800px; margin: auto; background: black; color: white; padding: 20px;'>", unsafe_allow_html=True)
+
+        # Profile Image and Description
+        col1, col2 = st.columns([1, 2])
+        with col1:
+            st.image("Shadow Tutorial/images/My pic.jpg", width=350, caption=self.profile_name)
+        with col2:
+            st.markdown(f"<h1>{self.profile_name}</h1>", unsafe_allow_html=True)
+            st.markdown(f"<h2>{self.profile_title}</h2>", unsafe_allow_html=True)
+            st.markdown("<ul>", unsafe_allow_html=True)
+            for item in self.profile_description:
+                st.markdown(f"<li>{item}</li>", unsafe_allow_html=True)
+            st.markdown("</ul>", unsafe_allow_html=True)
+
+        st.markdown("</div>", unsafe_allow_html=True)
+
+    def render_footer(self):
+        linkedin_icon = self.get_base64_image("Shadow Tutorial/images/linkedn.png")
+        github_icon = self.get_base64_image("Shadow Tutorial/images/github.jpeg")
+        twitter_icon = self.get_base64_image("Shadow Tutorial/images/twitter.jpeg")
+
+        if linkedin_icon and github_icon:
+            # Footer with social links
+            footer_html = f"""
+            <footer style='background: #000; color: white; text-align: center; padding: 20px;'>
+                <p>&copy; 2024 Data Scientist. All rights reserved.</p>
+                <div style="display: flex; justify-content: center; gap: 20px; margin-top: 10px;">
+                    <a href="https://www.linkedin.com/in/maruf-khan-1516a4224/" target="_blank" style="text-decoration: none; color: white;">
+                        <img src="data:image/png;base64,{linkedin_icon}" style="width: 30px; height: 30px; vertical-align: middle;"> LinkedIn
+                    </a>
+                    <a href="https://github.com/Maruf-Ahmad-khan?tab=followers" target="_blank" style="text-decoration: none; color: white;">
+                        <img src="data:image/png;base64,{github_icon}" style="width: 30px; height: 30px; vertical-align: middle;"> GitHub
+                    </a>
+                     <a href="https://x.com/MarufKh64948760?tab=followers" target="_blank" style="text-decoration: none; color: white;">
+                        <img src="data:image/png;base64,{twitter_icon}" style="width: 30px; height: 30px; vertical-align: middle;"> Twitter
+                    </a>
                 </div>
-            </section>
-            """,
-            unsafe_allow_html=True,
-        )
-
-        # Streamlit Input Form
-        with st.form("contact_form"):
-            st.text_input("Full Name", placeholder="Your Full Name")
-            st.text_input("Email Address", placeholder="Your Email Address")
-            st.text_area("Message", placeholder="Your Message")
-            submitted = st.form_submit_button("Send")
-            if submitted:
-                st.success("Thank you for your message! I'll get back to you soon.")
+            </footer>
+            """
+            st.markdown(footer_html, unsafe_allow_html=True)
+        else:
+            st.error("Error: Social media icons not found!")
 
     def run(self):
-        """Run the contact page."""
-        self.set_page_config()
+        # Set page config as the very first Streamlit command
+        st.set_page_config(page_title=self.title, layout="wide")
+        
+        # Call rendering methods
         self.render_header()
-        self.render_intro()
-        self.render_contact_form()
+        self.render_nav()
+        self.render_profile()
+        self.render_footer()
 
 
-# Run the Contact Page
 if __name__ == "__main__":
-    page = ContactPage()
-    page.run()
+    app = DataScientistProfileApp()
+    app.run()
