@@ -45,3 +45,22 @@ html_code = f"""
 
 # Render the iframe in Streamlit
 components.html(html_code, height=800)  # Match the iframe height here
+
+
+st.title("HR Churn Analysis")
+power_bi_embed_url = "https://app.powerbi.com/reportEmbed?reportId=ca28fe7f-c049-44f6-b0dd-48e314f990c3&autoAuth=true&ctid=4a36bb2f-1c55-49e0-9a23-6281dfd38c6b"
+
+# HTML code to embed Power BI in an iframe
+html_code = f"""
+<iframe 
+    title="Power BI Dashboard HR Churn Analysis" 
+    width="100%" 
+    height="800"  # Increased height for better viewing
+    src="{power_bi_embed_url}" 
+    frameborder="0" 
+    allowFullScreen="true">
+</iframe>
+"""
+
+# Render the iframe in Streamlit
+components.html(html_code, height=800)  # Match the iframe height here
